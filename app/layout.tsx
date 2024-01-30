@@ -7,6 +7,7 @@ import Loader from "@/components/common/Loader";
 
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
+import useColorMode from "@/hooks/useColorMode";
 
 export default function RootLayout({
   children,
@@ -14,6 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [colorMode, setColorMode] = useColorMode();
 
   const [loading, setLoading] = useState<boolean>(true);
 

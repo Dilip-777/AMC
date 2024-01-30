@@ -1,4 +1,3 @@
-"use client";
 import ECommerce from "@/components/Dashboard/E-commerce";
 import useColorMode from "@/hooks/useColorMode";
 import { Metadata } from "next";

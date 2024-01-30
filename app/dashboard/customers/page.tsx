@@ -1,4 +1,3 @@
-"use client";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import TableThree from "@/components/Tables/TableThree";
 import { Customer } from "@/types/package";

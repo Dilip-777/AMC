@@ -15,7 +15,7 @@ Welcome to the Annual Maintenance Contract (AMC) Management System! This project
 ## Tech Stack
 
 - [Next.js](https://nextjs.org/) - A React framework for building server-rendered applications.
-- [Drizzle ORM](https://github.com/fabiospampinato/drizzle](https://orm.drizzle.team/) -Drizzle ORM is a lightweight and performant TypeScript ORM with developer experience in mind.
+- [Drizzle ORM](https://orm.drizzle.team/) -Drizzle ORM is a lightweight and performant TypeScript ORM with developer experience in mind.
 - [PostgreSQL](https://www.postgresql.org/) - A powerful, open-source relational database system.
 - [tRPC](https://trpc.io/) - tRPC is to provide a simple, type-safe way to build APIs
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework.

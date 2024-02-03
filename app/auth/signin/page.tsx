@@ -1,33 +1,29 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Signin Page | Next.js E-commerce Dashboard Template",
-  description: "This is Signin page for TailAdmin Next.js",
+  title: "Signin Page",
   // other metadata
 };
 
 const SignIn: React.FC = () => {
   return (
     <>
-      <Breadcrumb pageName="Sign In" />
-
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="rounded-sm border  shadow-default border-strokedark bg-boxdark min-h-screen">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
               <Link className="mb-5.5 inline-block" href="/">
                 <Image
-                  className="hidden dark:block"
+                  className="block"
                   src={"/images/logo/logo.svg"}
                   alt="Logo"
                   width={176}
                   height={32}
                 />
                 <Image
-                  className="dark:hidden"
+                  className="hidden"
                   src={"/images/logo/logo-dark.svg"}
                   alt="Logo"
                   width={176}
@@ -165,23 +161,23 @@ const SignIn: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+          <div className="w-full border-strokedark xl:w-1/2 xl:border-l-2">
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <span className="mb-1.5 block font-medium">Start for free</span>
-              <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
+              <h2 className="mb-9 text-2xl font-bold text-white sm:text-title-xl2">
                 Sign In to TailAdmin
               </h2>
 
               <form>
                 <div className="mb-4">
-                  <label className="mb-2.5 block font-medium text-black dark:text-white">
+                  <label className="mb-2.5 block font-medium text-white">
                     Email
                   </label>
                   <div className="relative">
                     <input
                       type="email"
                       placeholder="Enter your email"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                      className="w-full rounded-lg border bg-transparent py-4 pl-6 pr-10 outline-none focus-visible:shadow-none border-form-strokedark bg-form-input focus:border-primary"
                     />
 
                     <span className="absolute right-4 top-4">
@@ -205,14 +201,14 @@ const SignIn: React.FC = () => {
                 </div>
 
                 <div className="mb-6">
-                  <label className="mb-2.5 block font-medium text-black dark:text-white">
+                  <label className="mb-2.5 block font-medium text-white">
                     Re-type Password
                   </label>
                   <div className="relative">
                     <input
                       type="password"
                       placeholder="6+ Characters, 1 Capital letter"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                      className="w-full rounded-lg border bg-transparent py-4 pl-6 pr-10 outline-none focus-visible:shadow-none border-form-strokedark bg-form-input focus:border-primary"
                     />
 
                     <span className="absolute right-4 top-4">
@@ -247,7 +243,7 @@ const SignIn: React.FC = () => {
                   />
                 </div>
 
-                <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
+                <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border  p-4  border-strokedark bg-meta-4 hover:bg-opacity-50">
                   <span>
                     <svg
                       width="20"

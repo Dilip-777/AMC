@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { AMC } from "@/types";
 import TableThree from "@/components/Tables/TableThree";
 import DashboardTable from "./table";
+import Test from "@/components/test";
 // import { Tab } from "@headlessui/react";
 
 // function classNames(...classes: string[]) {
@@ -17,6 +18,7 @@ import DashboardTable from "./table";
 const ECommerce: React.FC = () => {
   return (
     <>
+      {/* <Test /> */}
       <Breadcrumb pageName="Dashboard" nav={false} />
       <div className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardDataStats

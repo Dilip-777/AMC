@@ -42,12 +42,12 @@ export const navItems: NavItem[] = [
     children: [
       {
         name: "Customer Without AMC",
-        path: "/dashboard/customers-without-amc",
+        path: "/dashboard/customers/without-amc",
         level: 2,
       },
       {
         name: "Running AMC Customers",
-        path: "/dashboard/runnning-amc-customers",
+        path: "/dashboard/customers/with-amc",
         level: 2,
       },
     ],

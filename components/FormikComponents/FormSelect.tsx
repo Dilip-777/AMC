@@ -1,9 +1,7 @@
 "use client";
 import { useField } from "formik";
 import { cn } from "../utils/cn";
-import React, { Fragment, useState } from "react";
-import { Listbox, ListboxProps } from "@headlessui/react";
-import Select from "../ui/Select";
+import React from "react";
 
 const people = [
   { id: 1, name: "Durward Reynolds", unavailable: false },
@@ -13,7 +11,7 @@ const people = [
   { id: 5, name: "Katelyn Rohan", unavailable: false },
 ];
 
-interface SelectProps<T> extends ListboxProps<"div", T, T> {
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
   name: string;
   className?: string;
@@ -29,17 +27,20 @@ export default function FormSelect({
   divClassName,
   options,
   required,
-}: SelectProps<any>) {
+  ...props
+}: SelectProps) {
   const [field, meta] = useField(name);
   const isError = Boolean(meta.touched && meta.error);
 
   return (
     <div className={cn("mb-4.5", divClassName)}>
-      <label className="mb-2.5 block text-black dark:text-white">{label}</label>
-      <div className="relative z-20 bg-transparent dark:bg-form-input">
+      <label className="mb-2.5 block text-black dark:text-white">
+        {label} {required && <span className="text-meta-1">*</span>}
+      </label>
+      <div className="relative  bg-transparent dark:bg-form-input">
         <select
           className={cn(
-            "w-full rounded appearance-none border-[1.5px]  !bg-transparent py-3 px-5 font-medium outline-none transition   disabled:cursor-default disabled:bg-whiter  bg-form-input ",
+            "relative  w-full appearance-none rounded border-2  bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary  dark:bg-form-input dark:focus:border-primary ",
             isError
               ? "border-danger"
               : "border-form-strokedark focus:border-primary active:border-primary",
@@ -47,8 +48,15 @@ export default function FormSelect({
           )}
           {...field}
         >
+          <option value="" className="text-sm">
+            {props.placeholder}
+          </option>
           {options.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option
+              className="py-10 h-20 text-sm"
+              key={option.value}
+              value={option.value}
+            >
               {option.label}
             </option>
           ))}
@@ -73,6 +81,7 @@ export default function FormSelect({
           </svg>
         </span>
       </div>
+      {isError && <div className="text-danger text-xs mt-1">{meta.error}</div>}
     </div>
   );
 }

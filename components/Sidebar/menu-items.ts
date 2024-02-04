@@ -60,12 +60,12 @@ export const navItems: NavItem[] = [
     children: [
       {
         name: "Add New Call",
-        path: "/dashboard/calls/add",
+        path: "/dashboard/lodged-calls/add",
         level: 2,
       },
       {
         name: "Lodged Calls",
-        path: "/dashboard/calls/lodged-calls",
+        path: "/dashboard/lodged-calls",
         level: 2,
       },
     ],
@@ -78,12 +78,12 @@ export const navItems: NavItem[] = [
     children: [
       {
         name: "Manage Executive",
-        path: "/dashboard/executive/add",
+        path: "/dashboard/executive",
         level: 2,
       },
       {
         name: "Add New Executive",
-        path: "/dashboard/executive",
+        path: "/dashboard/executive/add",
         level: 2,
       },
     ],

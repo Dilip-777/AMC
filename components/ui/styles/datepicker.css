@@ -1,0 +1,24 @@
+.bg-white {
+  background-color: #1d2a39;
+}
+
+.border-gray-300 {
+  border-color: #3d4d60;
+  z-index: 10000;
+}
+
+.rotate-45 {
+  z-index: 10000;
+  border-top: 1px solid #3d4d60;
+  border-right: none;
+  border-bottom: none;
+  border-left: 1px solid #3d4d60;
+  box-shadow: none;
+  margin-right: 20px;
+  margin-top: 3px;
+  z-index: 10 !important;
+}
+
+.items-stretch {
+  z-index: 200000 !important;
+}

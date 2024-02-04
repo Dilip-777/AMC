@@ -27,10 +27,9 @@ export default function FormInput({
         {label} {required && <span className="text-meta-1">*</span>}
       </label>
       <input
-        type="email"
         placeholder="Enter your email address"
         className={cn(
-          "w-full rounded border-[1.5px]  !bg-transparent py-3 px-5 font-medium outline-none transition   disabled:cursor-default disabled:bg-whiter  bg-form-input ",
+          "w-full rounded border-2  !bg-transparent py-3 px-5 font-medium outline-none transition   disabled:cursor-default disabled:bg-whiter  bg-form-input ",
           isError
             ? "border-danger"
             : "border-form-strokedark focus:border-primary active:border-primary",

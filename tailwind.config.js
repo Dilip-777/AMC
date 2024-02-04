@@ -6,6 +6,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    // "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
   ],
   darkMode: "class",
 
@@ -193,6 +194,7 @@ module.exports = {
         300: "18.75rem",
       },
       minWidth: {
+        11: "2.75rem",
         22.5: "5.625rem",
         42.5: "10.625rem",
         47.5: "11.875rem",

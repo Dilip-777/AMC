@@ -1,25 +1,25 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 
 import { Metadata } from "next";
-import CustomerForm from "./CustomerForm";
+import LodgedCallsForm from "./LodgedCallsForm";
 export const metadata: Metadata = {
-  title: "Add Customers",
-  description: "This is Customers page",
+  title: "Add Lodged Calls",
+  description: "This is Lodged Calls page",
   // other metadata
 };
 
-const AddCustomers = () => {
+const AddLodgedCalls = () => {
   return (
     <>
-      <Breadcrumb pageName="Add Customers" nav={false} />
+      <Breadcrumb pageName="Add Lodged Calls" />
 
       <div className="flex flex-col gap-9">
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <CustomerForm />
+          <LodgedCallsForm />
         </div>
       </div>
     </>
   );
 };
 
-export default AddCustomers;
+export default AddLodgedCalls;

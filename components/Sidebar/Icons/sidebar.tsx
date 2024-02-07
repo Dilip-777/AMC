@@ -66,7 +66,7 @@ export const AMCIcon = () => (
 export const ServiceCallIcon = () => (
   <svg
     className="fill-current"
-    width="18"
+    width="24"
     height="22"
     viewBox="0 0 18 22"
     fill="none"
@@ -83,7 +83,7 @@ export const ServiceCallIcon = () => (
 export const ExecutiveIcon = () => (
   <svg
     className="fill-current"
-    width="18"
+    width="24"
     height="22"
     viewBox="0 0 18 22"
     fill="none"
@@ -100,7 +100,7 @@ export const ExecutiveIcon = () => (
 export const AMCReportsIcon = () => (
   <svg
     className="fill-current"
-    width="18"
+    width="24"
     height="22"
     viewBox="0 0 18 22"
     fill="none"
@@ -110,6 +110,45 @@ export const AMCReportsIcon = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
       d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+    />
+  </svg>
+);
+
+export const ReminderIcon = () => (
+  <svg
+    className="fill-current"
+    width="24"
+    height="22"
+    viewBox="0 0 18 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5"
+    />
+  </svg>
+);
+
+export const SettingsIcon = () => (
+  <svg
+    className="fill-current"
+    width="24"
+    height="22"
+    viewBox="0 0 18 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M4.867 19.125h.008v.008h-.008v-.008Z"
     />
   </svg>
 );

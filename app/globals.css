@@ -27,6 +27,15 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  position: absolute;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #aeb7c0;
+  border-radius: 3px;
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

@@ -5,7 +5,9 @@ import {
   CustomersIcon,
   DashboardIcon,
   ExecutiveIcon,
+  ReminderIcon,
   ServiceCallIcon,
+  SettingsIcon,
 } from "./Icons/sidebar";
 
 export const navItems: NavItem[] = [
@@ -96,32 +98,101 @@ export const navItems: NavItem[] = [
     children: [
       {
         name: "All AMC Records",
-        path: "/dashboard/amc/all",
+        path: "/dashboard/amc-report/all",
         level: 2,
       },
       {
         name: "Service AMC",
-        path: "/dashboard/calls/lodged-calls",
+        path: "/dashboard/amc-report/service",
         level: 2,
       },
       {
         name: "Active AMCs",
-        path: "/dashboard/calls/lodged-calls",
+        path: "/dashboard/amc-report/active",
         level: 2,
       },
       {
         name: "AMC Renewed",
-        path: "/dashboard/calls/lodged-calls",
+        path: "/dashboard/amc-report/renewed",
         level: 2,
       },
       {
         name: "AMCs Expired",
-        path: "/dashboard/calls/lodged-calls",
+        path: "/dashboard/amc-report/expired",
         level: 2,
       },
       {
         name: "No AMC Issued Customers",
-        path: "/dashboard/calls/lodged-calls",
+        path: "/dashboard/amc-report/not-issued",
+        level: 2,
+      },
+    ],
+  },
+  {
+    name: "Call Report",
+    path: "/dashboard/calls",
+    Icon: ServiceCallIcon,
+    level: 1,
+    children: [
+      {
+        name: "Pending Calls",
+        path: "/dashboard/calls/pending",
+        level: 2,
+      },
+      {
+        name: "Closed Calls",
+        path: "/dashboard/calls/closed",
+        level: 2,
+      },
+      {
+        name: "Customer wise Calls",
+        path: "/dashboard/calls/customer-wise",
+        level: 2,
+      },
+    ],
+  },
+  {
+    name: "Reminder",
+    path: "/dashboard/calls",
+    Icon: ReminderIcon,
+    level: 1,
+    children: [
+      {
+        name: "Expired AMC Email Reminder",
+        path: "/dashboard/reminders/email",
+        level: 2,
+      },
+      {
+        name: "Send SMS Reminder",
+        path: "/dashboard/reminders/sms",
+        level: 2,
+      },
+    ],
+  },
+  {
+    name: "Settings",
+    path: "/dashboard/settings",
+    Icon: SettingsIcon,
+    level: 1,
+    children: [
+      {
+        name: "Company Settings",
+        path: "/dashboard/settings/company",
+        level: 2,
+      },
+      {
+        name: "Manage Call Type",
+        path: "/dashboard/settings/call-type",
+        level: 2,
+      },
+      {
+        name: "Manage Customer Type",
+        path: "/dashboard/settings/customer-type",
+        level: 2,
+      },
+      {
+        name: "Manage Zone",
+        path: "/dashboard/settings/zone",
         level: 2,
       },
     ],

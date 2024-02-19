@@ -136,35 +136,35 @@ export const navItems: NavItem[] = [
     children: [
       {
         name: "Pending Calls",
-        path: "/dashboard/calls/pending",
+        path: "/dashboard/lodged-calls/pending",
         level: 2,
       },
       {
         name: "Closed Calls",
-        path: "/dashboard/calls/closed",
+        path: "/dashboard/lodged-calls/closed",
         level: 2,
       },
       {
         name: "Customer wise Calls",
-        path: "/dashboard/calls/customer-wise",
+        path: "/dashboard/lodged-calls/customer-wise",
         level: 2,
       },
     ],
   },
   {
     name: "Reminder",
-    path: "/dashboard/calls",
+    path: "/reminder",
     Icon: ReminderIcon,
     level: 1,
     children: [
       {
         name: "Expired AMC Email Reminder",
-        path: "/dashboard/reminders/email",
+        path: "/dashboard/reminder/email",
         level: 2,
       },
       {
         name: "Send SMS Reminder",
-        path: "/dashboard/reminders/sms",
+        path: "/dashboard/reminder/sms",
         level: 2,
       },
     ],

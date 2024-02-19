@@ -1,5 +1,5 @@
 {
-  "name": "tailadmin-free-nextjs",
+  "name": "amc-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -32,6 +32,7 @@
     "heroicons": "^2.1.1",
     "jsvectormap": "^1.5.3",
     "next": "13.4.12",
+    "next-auth": "^4.24.6",
     "postcss": "8.4.27",
     "postgres": "^3.4.3",
     "react": "18.2.0",

@@ -22,3 +22,31 @@
 .items-stretch {
   z-index: 200000 !important;
 }
+
+.text-gray-400 {
+  opacity: 0.5;
+}
+
+.bg-blue-100 {
+  background-color: #3d4d60;
+}
+
+.bg-blue-500 {
+  background-color: #3d4d60;
+}
+
+.rounded-l-full {
+  border-radius: 100% 0 0 100%;
+}
+
+.rounded-r-full {
+  border-radius: 0 100% 100% 0;
+}
+
+.grid-cols-7 {
+  row-gap: 3px;
+}
+
+.lg:flex-row {
+  flex-direction: row;
+}

@@ -249,12 +249,19 @@ const TableThree = (props: Props) => {
                     className="border-b py-3 px-2 border-strokedark"
                   >
                     {headCell.actionComponent ??
-                      headCell?.valueGetter(tableItem) ??
+                      headCell?.valueGetter(tableItem, key) ??
                       "-"}
                   </td>
                 ))}
               </tr>
             ))}
+            {props.tableData.length === 0 && (
+              <tr>
+                <td colSpan={props.headCells.length} className=" py-3 px-2">
+                  No data available
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

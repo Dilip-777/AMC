@@ -46,7 +46,8 @@ export default function Pagination({
           ))}
         </select>
         <p className="whitespace-nowrap ">
-          {rowsPerPage * page + 1} - {rowsPerPage * (page + 1)} of {length}
+          {rowsPerPage * page + 1} -{" "}
+          {Math.min(rowsPerPage * (page + 1), length)} of {length}
         </p>
 
         <ToolTip text="Previous" onClick={() => handleChangePage(page - 1)}>

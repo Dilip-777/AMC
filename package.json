@@ -22,6 +22,7 @@
     "@types/react-dom": "18.2.7",
     "apexcharts": "^3.41.1",
     "autoprefixer": "10.4.14",
+    "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "drizzle-orm": "^0.29.3",
@@ -33,6 +34,7 @@
     "jsvectormap": "^1.5.3",
     "next": "13.4.12",
     "next-auth": "^4.24.6",
+    "pg": "^8.11.3",
     "postcss": "8.4.27",
     "postgres": "^3.4.3",
     "react": "18.2.0",
@@ -47,6 +49,7 @@
     "zod-formik-adapter": "^1.2.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "drizzle-kit": "^0.20.14"
   }
 }

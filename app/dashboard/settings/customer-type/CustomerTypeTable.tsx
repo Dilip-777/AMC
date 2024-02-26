@@ -1,7 +1,10 @@
 "use client";
 
 import TableThree from "@/components/Tables/TableThree";
+import Pagination from "@/components/ui/Pagination";
 import ToolTip from "@/components/ui/Tooltip";
+import { CustType } from "@/db/schema";
+import { useState } from "react";
 
 const ActionRendered = () => (
   <div className="flex items-center justify-center space-x-3.5">
@@ -55,27 +58,31 @@ const ActionRendered = () => (
 );
 
 const headCells = [
-  { id: "sno", label: "S No", valueGetter: (row: any) => 1 },
   {
-    id: "type",
+    id: "sno",
+    label: "S No",
+    valueGetter: (row: CustType, i: number) => i + 1,
+  },
+  {
+    id: "name",
     label: "Customer Type",
-    valueGetter: (row: any) => row.type,
+    valueGetter: (row: CustType) => row.name,
   },
   {
     id: "status",
     label: "Status",
-    valueGetter: (row: any) => row.status,
+    valueGetter: (row: CustType) => row.status,
   },
   {
     id: "function",
     label: "Functions",
-    valueGetter: (row: any) => row.functions,
+    actionComponent: <ActionRendered />,
   },
 ];
 
 const tableData = [
   {
-    type: "Premium",
+    name: "Premium",
     status: "Active",
     functions: "Edit, Delete, View Details",
   },
@@ -94,7 +101,10 @@ const tableData = [
   { type: "Diamond", status: "Active", functions: "Edit, Delete" },
 ];
 
-export default function CustomerTypeTable() {
+export default function CustomerTypeTable({ data }: { data: CustType[] }) {
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [page, setPage] = useState(0);
+
   return (
     <div>
       <div className="flex justify-between items-center mx-8 my-4">
@@ -164,7 +174,15 @@ export default function CustomerTypeTable() {
           </ToolTip>
         </div>
       </div>
-      <TableThree tableData={tableData} headCells={headCells} />
+      <TableThree tableData={data} headCells={headCells} />
+      <Pagination
+        length={data.length}
+        options={[10, 20, 30, 40, 50]}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
     </div>
   );
 }

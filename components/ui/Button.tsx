@@ -40,7 +40,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(
           buttonVariants({ variant, size, className }),
-          loading && "bg- hover:bg-gray-100 text-gray-500"
+          loading && "bg-gray-100 text-gray-300"
         )}
         disabled={loading}
         ref={ref}

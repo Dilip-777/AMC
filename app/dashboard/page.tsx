@@ -9,13 +9,18 @@ import { AMC } from "@/types";
 import TableThree from "@/components/Tables/TableThree";
 import DashboardTable from "./table";
 import Test from "@/components/test";
+import { getServerAuthSession } from "@/server/auth/auth";
+import { getSession } from "next-auth/react";
 // import { Tab } from "@headlessui/react";
 
 // function classNames(...classes: string[]) {
 //   return classes.filter(Boolean).join(" ");
 // }
 
-const ECommerce: React.FC = () => {
+const ECommerce: React.FC = async (req) => {
+  // const authSession = await getServerAuthSession();
+  // console.log(authSession);
+
   return (
     <>
       {/* <Test /> */}

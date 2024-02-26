@@ -8,6 +8,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   divClassName?: string;
   required?: boolean;
+  icon?: React.ReactNode;
 }
 
 export default function FormInput({
@@ -16,6 +17,7 @@ export default function FormInput({
   className,
   divClassName,
   required,
+  icon,
   ...props
 }: InputProps) {
   const [field, meta] = useField(name);
@@ -26,18 +28,20 @@ export default function FormInput({
       <label className="mb-1.5 block text-white">
         {label} {required && <span className="text-meta-1">*</span>}
       </label>
-      <input
-        placeholder="Enter your email address"
-        className={cn(
-          "w-full rounded border-2  !bg-transparent py-3 px-5 font-medium outline-none transition   disabled:cursor-default disabled:bg-whiter  bg-form-input ",
-          isError
-            ? "border-danger"
-            : "border-form-strokedark focus:border-primary active:border-primary",
-          className
-        )}
-        {...field}
-        {...props}
-      />
+      <div className="relative">
+        <input
+          className={cn(
+            "w-full rounded border-2  text-white py-3 px-4 font-medium outline-none transition   disabled:cursor-default disabled:bg-whiter  bg-form-input ",
+            isError
+              ? "border-danger"
+              : "border-form-strokedark focus:border-primary active:border-primary",
+            className
+          )}
+          {...field}
+          {...props}
+        />
+        {icon && <span className="absolute right-4 top-4">{icon}</span>}
+      </div>
       {isError && <div className="text-danger text-xs mt-1">{meta.error}</div>}
     </div>
   );

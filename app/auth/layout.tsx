@@ -1,12 +1,15 @@
-"use client";
-import useColorMode from "@/hooks/useColorMode";
+import { getServerAuthSession } from "@/server/auth/auth";
+import { redirect } from "next/navigation";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [colorMode, setColorMode] = useColorMode();
+  const session = await getServerAuthSession();
+  if (session) {
+    redirect("/dashboard");
+  }
   return (
     <html lang="en">
       <body>{children}</body>

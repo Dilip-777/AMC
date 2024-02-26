@@ -1,30 +1,29 @@
 "use client";
 
 import TableThree from "@/components/Tables/TableThree";
-import { Customer } from "@/types/package";
+import Pagination from "@/components/ui/Pagination";
+import { Customer } from "@/db/schema";
+import { useEffect, useState } from "react";
 
 const ActionRendered = () => (
-  <div className="flex items-center space-x-3.5">
+  <div className="flex items-center justify-center ">
     <button className="hover:text-primary">
       <svg
-        className="fill-current"
-        width="18"
-        height="18"
-        viewBox="0 0 18 18"
-        fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-5 h-5"
       >
         <path
-          d="M8.99981 14.8219C3.43106 14.8219 0.674805 9.50624 0.562305 9.28124C0.47793 9.11249 0.47793 8.88749 0.562305 8.71874C0.674805 8.49374 3.43106 3.20624 8.99981 3.20624C14.5686 3.20624 17.3248 8.49374 17.4373 8.71874C17.5217 8.88749 17.5217 9.11249 17.4373 9.28124C17.3248 9.50624 14.5686 14.8219 8.99981 14.8219ZM1.85605 8.99999C2.4748 10.0406 4.89356 13.5562 8.99981 13.5562C13.1061 13.5562 15.5248 10.0406 16.1436 8.99999C15.5248 7.95936 13.1061 4.44374 8.99981 4.44374C4.89356 4.44374 2.4748 7.95936 1.85605 8.99999Z"
-          fill=""
-        />
-        <path
-          d="M9 11.3906C7.67812 11.3906 6.60938 10.3219 6.60938 9C6.60938 7.67813 7.67812 6.60938 9 6.60938C10.3219 6.60938 11.3906 7.67813 11.3906 9C11.3906 10.3219 10.3219 11.3906 9 11.3906ZM9 7.875C8.38125 7.875 7.875 8.38125 7.875 9C7.875 9.61875 8.38125 10.125 9 10.125C9.61875 10.125 10.125 9.61875 10.125 9C10.125 8.38125 9.61875 7.875 9 7.875Z"
-          fill=""
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
         />
       </svg>
     </button>
-    <button className="hover:text-primary">
+    {/* <button className="hover:text-primary">
       <svg
         className="fill-current"
         width="18"
@@ -69,7 +68,7 @@ const ActionRendered = () => (
           fill=""
         />
       </svg>
-    </button>
+    </button> */}
   </div>
 );
 
@@ -80,11 +79,15 @@ const headCells = [
     label: "Customer ID",
     valueGetter: (row: Customer) => row.id,
   },
-  { id: "name", label: "Name", valueGetter: (row: Customer) => row.name },
   {
-    id: "email",
-    label: "Email",
-    valueGetter: (row: Customer) => row.email,
+    id: "name",
+    label: "Customer Name",
+    valueGetter: (row: Customer) => row.name,
+  },
+  {
+    id: "mobile",
+    label: "Mobile",
+    valueGetter: (row: Customer) => row.mobile,
   },
   {
     id: "address",
@@ -96,91 +99,80 @@ const headCells = [
     label: "Status",
     valueGetter: (row: Customer) => row.status,
   },
-];
-
-const tableData = [
   {
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-    type: "Regular",
-    address: "123 Main St, Anytown, USA",
-    status: "Active",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane.smith@example.com",
-    type: "VIP",
-    address: "456 Oak Ave",
-    status: "Inactive",
-  },
-  {
-    id: 3,
-    name: "Bob Johnson",
-    email: "bob.johnson@example.com",
-    type: "Regular",
-    address: "789 Elm Blvd",
-    status: "Active",
-  },
-  {
-    id: 4,
-    name: "Alice Brown",
-    email: "alice.brown@example.com",
-    type: "Regular",
-    address: "101 Pine Rd",
-    status: "Inactive",
-  },
-  {
-    id: 5,
-    name: "Charlie Davis",
-    email: "charlie.davis@example.com",
-    type: "VIP",
-    address: "202 Maple Lane",
-    status: "Active",
-  },
-  {
-    id: 6,
-    name: "Eva Wilson",
-    email: "eva.wilson@example.com",
-    type: "Regular",
-    address: "303 Cedar Street",
-    status: "Inactive",
-  },
-  {
-    id: 7,
-    name: "David White",
-    email: "david.white@example.com",
-    type: "Regular",
-    address: "404 Birch Court",
-    status: "Active",
-  },
-  {
-    id: 8,
-    name: "Grace Taylor",
-    email: "grace.taylor@example.com",
-    type: "VIP",
-    address: "505 Spruce Place",
-    status: "Inactive",
-  },
-  {
-    id: 9,
-    name: "Frank Miller",
-    email: "frank.miller@example.com",
-    type: "Regular",
-    address: "606 Pinecrest Road",
-    status: "Active",
-  },
-  {
-    id: 10,
-    name: "Helen Anderson",
-    email: "helen.anderson@example.com",
-    type: "Regular",
-    address: "707 Elm Street",
-    status: "Inactive",
+    id: "actions",
+    label: "Actions",
+    actionComponent: <ActionRendered />,
   },
 ];
 
-export default function CustomerWithoutAMCTable() {
-  return <TableThree tableData={tableData} headCells={headCells} />;
+export default function CustomerWithoutAMCTable({
+  data,
+}: {
+  data: Customer[];
+}) {
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [page, setPage] = useState(0);
+  const [search, setSearch] = useState("");
+  const [customers, setCustomers] = useState(data);
+
+  useEffect(() => {
+    if (search === "") {
+      setCustomers(data);
+    } else {
+      setCustomers(
+        data.filter((customer) =>
+          customer.name.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
+  }, [search, data]);
+  return (
+    <div className="border-strokedark bg-boxdark">
+      <div className="flex justify-between items-center mx-8 my-4 ">
+        <div className="relative">
+          <button className="absolute left-0 top-1/2 -translate-y-1/2">
+            <svg
+              className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M9.16666 3.33332C5.945 3.33332 3.33332 5.945 3.33332 9.16666C3.33332 12.3883 5.945 15 9.16666 15C12.3883 15 15 12.3883 15 9.16666C15 5.945 12.3883 3.33332 9.16666 3.33332ZM1.66666 9.16666C1.66666 5.02452 5.02452 1.66666 9.16666 1.66666C13.3088 1.66666 16.6667 5.02452 16.6667 9.16666C16.6667 13.3088 13.3088 16.6667 9.16666 16.6667C5.02452 16.6667 1.66666 13.3088 1.66666 9.16666Z"
+                fill=""
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M13.2857 13.2857C13.6112 12.9603 14.1388 12.9603 14.4642 13.2857L18.0892 16.9107C18.4147 17.2362 18.4147 17.7638 18.0892 18.0892C17.7638 18.4147 17.2362 18.4147 16.9107 18.0892L13.2857 14.4642C12.9603 14.1388 12.9603 13.6112 13.2857 13.2857Z"
+                fill=""
+              />
+            </svg>
+          </button>
+
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            placeholder="Type to search..."
+            className="w-full bg-transparent pl-9 pr-4 font-medium focus:outline-none xl:w-125"
+          />
+        </div>
+      </div>
+      <TableThree tableData={customers} headCells={headCells} />
+      <Pagination
+        length={customers.length}
+        options={[10, 20, 30, 40, 50]}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
+    </div>
+  );
 }

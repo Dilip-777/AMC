@@ -8,7 +8,7 @@ import {
   ReminderIcon,
   ServiceCallIcon,
   SettingsIcon,
-} from "./Icons/sidebar";
+} from "../../ui/Icons/sidebar";
 
 export const navItems: NavItem[] = [
   {
@@ -188,6 +188,11 @@ export const navItems: NavItem[] = [
       {
         name: "Manage Customer Type",
         path: "/dashboard/settings/customer-type",
+        level: 2,
+      },
+      {
+        name: "Add Customer Type",
+        path: "/dashboard/settings/customer-type/add",
         level: 2,
       },
       {

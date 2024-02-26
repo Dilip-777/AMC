@@ -1,9 +1,12 @@
 import { db } from "@/db";
-import { publicProcedure, router } from "./trpc";
+import { publicProcedure, createTRPCRouter } from "./trpc";
 import { todos } from "@/db/schema";
 import { z } from "zod";
+import { registerRouter } from "./routers/register";
+import { customertyperouter } from "./routers/customertype";
+import { customerRouter } from "./routers/customer";
 
-export const appRouter = router({
+export const appRouter = createTRPCRouter({
   getTodos: publicProcedure.query(async () => {
     try {
       const ts = await db.select().from(todos);
@@ -30,6 +33,9 @@ export const appRouter = router({
         return false;
       }
     }),
+  register: registerRouter,
+  customertype: customertyperouter,
+  customers: customerRouter,
 });
 
 export type AppRouter = typeof appRouter;

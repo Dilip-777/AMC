@@ -6,7 +6,7 @@ import { cn } from "../utils/cn";
 import { useField } from "formik";
 
 interface FormDateProps {
-  label: string;
+  label?: string;
   name: string;
   className?: string;
   placeholder: string;
@@ -34,22 +34,21 @@ const FormDate = ({
   const handleValueChange = (newValue: any) => {
     console.log("newValue:", newValue.startDate);
     setValue(newValue);
-    console.log(field.name, "sldkfjsl");
   };
 
   useEffect(() => {
     if (setFieldValue) {
-      setFieldValue("date", value.startDate || "");
+      setFieldValue(name, value.startDate || "");
     }
-  }, [value]);
-
-  console.log("field", field.value, field.name, "sldkfjsl");
+  }, [value, setFieldValue, name]);
 
   return (
     <div className={cn("mb-4.5", divClassName)}>
-      <label className="mb-1.5 block text-white">
-        {label} {required && <span className="text-meta-1">*</span>}
-      </label>
+      {label && (
+        <label className="mb-1.5 block text-white">
+          {label} {required && <span className="text-meta-1">*</span>}
+        </label>
+      )}
       <Datepicker
         useRange={false}
         asSingle={true}
@@ -61,7 +60,7 @@ const FormDate = ({
         toggleClassName="absolute right-4 top-[30%]"
         // inputClassName="relative  w-full  rounded border-2  bg-transparent py-3 px-5 outline-none transition  border-form-strokedark focus:border-primary bg-form-input text-white"
         inputClassName={cn(
-          "w-full rounded border-2  !bg-transparent py-3 px-5 font-medium outline-none transition   disabled:cursor-default disabled:bg-whiter  bg-form-input ",
+          "w-full rounded border-2   py-3 px-5 font-medium outline-none transition   disabled:cursor-default disabled:bg-whiter  bg-form-input ",
           isError
             ? "border-danger"
             : "border-form-strokedark focus:border-primary active:border-primary",

@@ -1,26 +1,17 @@
 import React from "react";
 import CardDataStats from "@/components/CardDataStats";
-// import Map from "../Maps/TestMap";
-
-// without this the component renders on server and throws an error
-import dynamic from "next/dynamic";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import { AMC } from "@/types";
-import TableThree from "@/components/Tables/TableThree";
 import DashboardTable from "./table";
-import Test from "@/components/test";
-import { getServerAuthSession } from "@/server/auth/auth";
-import { getSession } from "next-auth/react";
-// import { Tab } from "@headlessui/react";
+import { db } from "@/db";
+import { amc, customers } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
-// function classNames(...classes: string[]) {
-//   return classes.filter(Boolean).join(" ");
-// }
-
-const ECommerce: React.FC = async (req) => {
-  // const authSession = await getServerAuthSession();
-  // console.log(authSession);
-
+const Dashboard: React.FC = async (req) => {
+  const data = await db.query.amc.findMany({
+    with: {
+      customer: true,
+    },
+  });
   return (
     <>
       {/* <Test /> */}
@@ -132,10 +123,10 @@ const ECommerce: React.FC = async (req) => {
         </CardDataStats>
       </div>
       <div className="flex flex-col gap-10">
-        <DashboardTable />
+        <DashboardTable data={data} />
       </div>
     </>
   );
 };
 
-export default ECommerce;
+export default Dashboard;

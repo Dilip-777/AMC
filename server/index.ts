@@ -5,6 +5,7 @@ import { z } from "zod";
 import { registerRouter } from "./routers/register";
 import { customertyperouter } from "./routers/customertype";
 import { customerRouter } from "./routers/customer";
+import { amcRouter } from "./routers/amc";
 
 export const appRouter = createTRPCRouter({
   getTodos: publicProcedure.query(async () => {
@@ -36,6 +37,7 @@ export const appRouter = createTRPCRouter({
   register: registerRouter,
   customertype: customertyperouter,
   customers: customerRouter,
+  amc: amcRouter,
 });
 
 export type AppRouter = typeof appRouter;

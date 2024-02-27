@@ -15,6 +15,7 @@
   border-left: 1px solid #3d4d60;
   box-shadow: none;
   margin-right: 20px;
+  margin-left: 20px;
   margin-top: 3px;
   z-index: 10 !important;
 }

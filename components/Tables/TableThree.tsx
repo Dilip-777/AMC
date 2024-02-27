@@ -248,9 +248,11 @@ const TableThree = (props: Props) => {
                     align="center"
                     className="border-b py-3 px-2 border-strokedark"
                   >
-                    {headCell.actionComponent ??
-                      headCell?.valueGetter(tableItem, key) ??
-                      "-"}
+                    {headCell.actionComponent ? (
+                      <headCell.actionComponent row={tableItem} />
+                    ) : (
+                      headCell?.valueGetter(tableItem, key) ?? "-"
+                    )}
                   </td>
                 ))}
               </tr>

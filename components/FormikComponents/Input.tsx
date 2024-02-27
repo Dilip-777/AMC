@@ -3,7 +3,7 @@ import { useField } from "formik";
 import { cn } from "../utils/cn";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   name: string;
   className?: string;
   divClassName?: string;
@@ -25,9 +25,11 @@ export default function FormInput({
 
   return (
     <div className={cn("mb-4.5", divClassName)}>
-      <label className="mb-1.5 block text-white">
-        {label} {required && <span className="text-meta-1">*</span>}
-      </label>
+      {label && (
+        <label className="mb-1.5 block text-white">
+          {label} {required && <span className="text-meta-1">*</span>}
+        </label>
+      )}
       <div className="relative">
         <input
           className={cn(

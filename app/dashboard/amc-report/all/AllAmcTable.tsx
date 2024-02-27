@@ -1,9 +1,17 @@
 "use client";
 
 import TableThree from "@/components/Tables/TableThree";
+import Pagination from "@/components/ui/Pagination";
 import ToolTip from "@/components/ui/Tooltip";
+import { AMC, Customer } from "@/db/schema";
+import moment from "moment";
+import { useEffect, useState } from "react";
 
-const ActionRendered = () => (
+interface AMCWithCustomer extends AMC {
+  customer: Customer;
+}
+
+const ActionRendered = ({ row }: { row: AMCWithCustomer }) => (
   <div className="flex items-center justify-center space-x-3.5">
     <button className="hover:text-primary">
       <svg
@@ -55,41 +63,44 @@ const ActionRendered = () => (
 );
 
 const headCells = [
-  { id: "sno", label: "S No", valueGetter: (row: any) => 1 },
+  { id: "sno", label: "S No", valueGetter: (row: AMCWithCustomer) => row.id },
   {
     id: "code",
     label: "AMC Code",
-    valueGetter: (row: any) => row.code,
+    valueGetter: (row: AMCWithCustomer) => row.code,
   },
   {
     id: "customer",
     label: "Customer",
-    valueGetter: (row: any) => row.customer,
+    valueGetter: (row: AMCWithCustomer) => row.customer.name,
   },
   {
     id: "address",
     label: "Address",
-    valueGetter: (row: any) => row.address,
+    valueGetter: (row: AMCWithCustomer) => row.customer.address,
   },
   {
     id: "mobile",
     label: "Mobile No",
-    valueGetter: (row: any) => row.mobile,
+    valueGetter: (row: AMCWithCustomer) => row.customer.mobile,
   },
   {
-    id: "amcRange",
+    id: "amcrage",
     label: "AMC Range",
-    valueGetter: (row: any) => row.amcRange,
+    valueGetter: (row: AMCWithCustomer) =>
+      `${moment(row.startDate).format("DD/MM/YYYY")} - ${moment(
+        row.endDate
+      ).format("DD/MM/YYYY")}`,
   },
   {
     id: "daysleft",
     label: "Days Left",
-    valueGetter: (row: any) => row.daysleft,
+    valueGetter: (row: AMCWithCustomer) => 15,
   },
   {
     id: "actions",
     label: "Actions",
-    actionComponent: <ActionRendered />,
+    actionComponent: ActionRendered,
   },
 ];
 
@@ -176,7 +187,23 @@ const tableData = [
   },
 ];
 
-export default function AllAMCTable() {
+export default function AllAMCTable({ data }: { data: AMCWithCustomer[] }) {
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [page, setPage] = useState(0);
+  const [search, setSearch] = useState("");
+  const [amcs, setamcs] = useState(data);
+
+  useEffect(() => {
+    if (search === "") {
+      setamcs(data);
+    } else {
+      setamcs(
+        data.filter((amc) =>
+          amc.code.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
+  }, [search, data]);
   return (
     <div>
       <div className="flex justify-between items-center mx-8 my-4">
@@ -206,6 +233,8 @@ export default function AllAMCTable() {
           </button>
 
           <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder="Type to search..."
             className="w-full bg-transparent pl-9 pr-4 font-medium focus:outline-none xl:w-125"
@@ -246,7 +275,15 @@ export default function AllAMCTable() {
           </ToolTip>
         </div>
       </div>
-      <TableThree tableData={tableData} headCells={headCells} />
+      <TableThree tableData={amcs} headCells={headCells} />
+      <Pagination
+        length={amcs.length}
+        options={[10, 20, 30, 40, 50]}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
     </div>
   );
 }

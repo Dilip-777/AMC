@@ -3,7 +3,8 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { Metadata } from "next";
 import CustomerWithoutAMCTable from "./Table";
 import { db } from "@/db";
-import { customers } from "@/db/schema";
+import { amc, customers } from "@/db/schema";
+import { eq, notExists } from "drizzle-orm";
 export const metadata: Metadata = {
   title: "Customers",
   description: "This is Customers page",
@@ -11,7 +12,12 @@ export const metadata: Metadata = {
 };
 
 const Customers = async () => {
-  const data = await db.select().from(customers);
+  const data = await db
+    .select()
+    .from(customers)
+    .where(
+      notExists(db.select().from(amc).where(eq(customers.id, amc.customerId)))
+    );
   return (
     <>
       <Breadcrumb pageName="Customers Without AMC" nav={false} />

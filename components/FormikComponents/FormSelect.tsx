@@ -16,7 +16,7 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
   className?: string;
   divClassName?: string;
-  options: { value: string; label: string }[];
+  options: { value: string | number; label: string }[];
   required?: boolean;
 }
 
@@ -34,7 +34,7 @@ export default function FormSelect({
 
   return (
     <div className={cn("mb-4.5", divClassName)}>
-      <label className="mb-2.5 block text-black dark:text-white">
+      <label className="mb-1.5 block text-black dark:text-white">
         {label} {required && <span className="text-meta-1">*</span>}
       </label>
       <div className="relative  bg-transparent dark:bg-form-input">

@@ -1,135 +1,119 @@
 "use client";
 
 import TableThree from "@/components/Tables/TableThree";
-import { AMC } from "@/types";
+import Pagination from "@/components/ui/Pagination";
+import { AMC, Customer } from "@/db/schema";
+import { useEffect, useState } from "react";
+import moment from "moment";
+
+interface AMCWithCustomer extends AMC {
+  customer: Customer;
+}
 
 const headCells = [
-  { id: "sno", label: "S No", valueGetter: (row: AMC) => 1 },
+  { id: "sno", label: "S No", valueGetter: (row: AMCWithCustomer) => row.id },
   {
     id: "amccode",
     label: "AMC Code",
-    valueGetter: (row: AMC) => row.id,
+    valueGetter: (row: AMCWithCustomer) => row.code,
   },
   {
     id: "customer",
     label: "Customer Name",
-    valueGetter: (row: AMC) => row.customer,
+    valueGetter: (row: AMCWithCustomer) => row.customer.name,
   },
   {
     id: "company",
     label: "Company",
-    valueGetter: (row: AMC) => row.company,
+    valueGetter: (row: AMCWithCustomer) => row.customer.company,
   },
   {
     id: "contact",
     label: "Contact",
-    valueGetter: (row: AMC) => row.contactnumber,
+    valueGetter: (row: AMCWithCustomer) => row.customer.mobile,
   },
   {
     id: "amcrage",
     label: "AMC Range",
-    valueGetter: (row: AMC) => row.amcrange,
+    valueGetter: (row: AMCWithCustomer) =>
+      `${moment(row.startDate).format("DD/MM/YYYY")} - ${moment(
+        row.endDate
+      ).format("DD/MM/YYYY")}`,
   },
   {
     id: "amcdaysover",
     label: "AMC Days Over",
-    valueGetter: (row: AMC) => row.amcdaysover,
+    valueGetter: (row: AMCWithCustomer) => 15,
   },
 ];
 
-const tableData: AMC[] = [
-  {
-    id: 1,
-    amccode: "AMC001",
-    customer: "Customer 1",
-    company: "Company A",
-    contactnumber: "123-456-7890",
-    amcrange: "Jan 2022 - Dec 2022",
-    amcdaysover: 15,
-  },
-  {
-    id: 2,
-    amccode: "AMC002",
-    customer: "Customer 2",
-    company: "Company B",
-    contactnumber: "987-654-3210",
-    amcrange: "Feb 2022 - Jan 2023",
-    amcdaysover: 5,
-  },
-  {
-    id: 3,
-    amccode: "AMC003",
-    customer: "Customer 3",
-    company: "Company C",
-    contactnumber: "555-555-5555",
-    amcrange: "Mar 2022 - Feb 2023",
-    amcdaysover: 8,
-  },
-  {
-    id: 4,
-    amccode: "AMC004",
-    customer: "Customer 4",
-    company: "Company D",
-    contactnumber: "777-888-9999",
-    amcrange: "Apr 2022 - Mar 2023",
-    amcdaysover: 12,
-  },
-  {
-    id: 5,
-    amccode: "AMC005",
-    customer: "Customer 5",
-    company: "Company E",
-    contactnumber: "111-222-3333",
-    amcrange: "May 2022 - Apr 2023",
-    amcdaysover: 20,
-  },
-  {
-    id: 6,
-    amccode: "AMC006",
-    customer: "Customer 6",
-    company: "Company F",
-    contactnumber: "444-555-6666",
-    amcrange: "Jun 2022 - May 2023",
-    amcdaysover: 3,
-  },
-  {
-    id: 7,
-    amccode: "AMC007",
-    customer: "Customer 7",
-    company: "Company G",
-    contactnumber: "666-777-8888",
-    amcrange: "Jul 2022 - Jun 2023",
-    amcdaysover: 10,
-  },
-  {
-    id: 8,
-    amccode: "AMC008",
-    customer: "Customer 8",
-    company: "Company H",
-    contactnumber: "999-000-1111",
-    amcrange: "Aug 2022 - Jul 2023",
-    amcdaysover: 7,
-  },
-  {
-    id: 9,
-    amccode: "AMC009",
-    customer: "Customer 9",
-    company: "Company I",
-    contactnumber: "222-333-4444",
-    amcrange: "Sep 2022 - Aug 2023",
-    amcdaysover: 18,
-  },
-  {
-    id: 10,
-    amccode: "AMC010",
-    customer: "Customer 10",
-    company: "Company J",
-    contactnumber: "333-444-5555",
-    amcrange: "Oct 2022 - Sep 2023",
-    amcdaysover: 6,
-  },
-];
+export default function DashboardTable({
+  data,
+}: {
+  data: (AMC & { customer: Customer })[];
+}) {
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [page, setPage] = useState(0);
+  const [search, setSearch] = useState("");
+  const [amcs, setamcs] = useState(data);
 
-export default function DashboardTable() {
-  return <TableThree tableData={tableData} headCells={headCells} />;
+  useEffect(() => {
+    if (search === "") {
+      setamcs(data);
+    } else {
+      setamcs(
+        data.filter((amc) =>
+          amc.code.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
+  }, [search, data]);
+  return (
+    <div className="border-strokedark bg-boxdark">
+      <div className="flex justify-between items-center mx-8 my-4 ">
+        <div className="relative">
+          <button className="absolute left-0 top-1/2 -translate-y-1/2">
+            <svg
+              className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M9.16666 3.33332C5.945 3.33332 3.33332 5.945 3.33332 9.16666C3.33332 12.3883 5.945 15 9.16666 15C12.3883 15 15 12.3883 15 9.16666C15 5.945 12.3883 3.33332 9.16666 3.33332ZM1.66666 9.16666C1.66666 5.02452 5.02452 1.66666 9.16666 1.66666C13.3088 1.66666 16.6667 5.02452 16.6667 9.16666C16.6667 13.3088 13.3088 16.6667 9.16666 16.6667C5.02452 16.6667 1.66666 13.3088 1.66666 9.16666Z"
+                fill=""
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M13.2857 13.2857C13.6112 12.9603 14.1388 12.9603 14.4642 13.2857L18.0892 16.9107C18.4147 17.2362 18.4147 17.7638 18.0892 18.0892C17.7638 18.4147 17.2362 18.4147 16.9107 18.0892L13.2857 14.4642C12.9603 14.1388 12.9603 13.6112 13.2857 13.2857Z"
+                fill=""
+              />
+            </svg>
+          </button>
+
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            placeholder="Type to search..."
+            className="w-full bg-transparent pl-9 pr-4 font-medium focus:outline-none xl:w-125"
+          />
+        </div>
+      </div>
+      <TableThree tableData={amcs} headCells={headCells} />
+      <Pagination
+        length={amcs.length}
+        options={[10, 20, 30, 40, 50]}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+      />
+    </div>
+  );
 }

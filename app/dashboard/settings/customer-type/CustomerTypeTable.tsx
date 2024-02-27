@@ -76,29 +76,8 @@ const headCells = [
   {
     id: "function",
     label: "Functions",
-    actionComponent: <ActionRendered />,
+    actionComponent: ActionRendered,
   },
-];
-
-const tableData = [
-  {
-    name: "Premium",
-    status: "Active",
-    functions: "Edit, Delete, View Details",
-  },
-  { type: "Regular", status: "Active", functions: "Edit, View Details" },
-  { type: "Basic", status: "Inactive", functions: "View Details" },
-  { type: "Silver", status: "Active", functions: "Edit, Delete" },
-  { type: "Gold", status: "Inactive", functions: "View" },
-  { type: "Bronze", status: "Active", functions: "Edit" },
-  {
-    type: "Platinum",
-    status: "Active",
-    functions: "Edit, Delete, View Details",
-  },
-  { type: "Standard", status: "Active", functions: "Edit, View Details" },
-  { type: "Starter", status: "Inactive", functions: "View Details" },
-  { type: "Diamond", status: "Active", functions: "Edit, Delete" },
 ];
 
 export default function CustomerTypeTable({ data }: { data: CustType[] }) {

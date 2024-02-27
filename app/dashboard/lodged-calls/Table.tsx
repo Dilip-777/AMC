@@ -85,7 +85,7 @@ const headCells = [
   {
     id: "actions",
     label: "Actions",
-    actionComponent: <ActionRendered />,
+    actionComponent: ActionRendered,
   },
 ];
 

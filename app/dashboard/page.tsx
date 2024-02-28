@@ -5,13 +5,28 @@ import DashboardTable from "./table";
 import { db } from "@/db";
 import { amc, customers } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import moment from "moment";
 
 const Dashboard: React.FC = async (req) => {
   const data = await db.query.amc.findMany({
     with: {
       customer: true,
     },
+    where: (amc, { gte, lt }) =>
+      gte(amc.endDate, new Date(moment().subtract(60, "days").toISOString())) &&
+      lt(amc.endDate, new Date(moment().add(60, "days").toISOString())),
   });
+  // const data = await db.query.amc.findMany({
+  //   with: {
+  //     customer: true,
+  //   },
+  //   where:
+  //     // endDate: {
+  //     //   gte: moment().subtract(60, "days"), // greater than or equal to 60 days ago
+  //     //   lt: moment().add(60, "days"), // less than 60 days from now
+  //     // } ,
+
+  // });
   return (
     <>
       {/* <Test /> */}

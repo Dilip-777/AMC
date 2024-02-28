@@ -56,6 +56,18 @@ export default function DashboardTable({
   const [page, setPage] = useState(0);
   const [search, setSearch] = useState("");
   const [amcs, setamcs] = useState(data);
+  const [currentTab, setCurrentTab] = useState(1);
+
+  const tabs = [
+    {
+      id: 1,
+      name: "Upcoming 60 Days",
+    },
+    {
+      id: 2,
+      name: "Past 60 Days",
+    },
+  ];
 
   useEffect(() => {
     if (search === "") {
@@ -68,8 +80,28 @@ export default function DashboardTable({
       );
     }
   }, [search, data]);
+  const currentDate = new Date();
+
+  // Calculate the current date plus 60 days
+  const currentDatePlus60Days = new Date(currentDate);
+  currentDatePlus60Days.setDate(currentDate.getDate() + 60);
   return (
     <div className="border-strokedark bg-boxdark">
+      <div className="mb-6 flex border-b border-stroke dark:border-strokedark  w-full justify-between">
+        {tabs.map((tab) => (
+          <p
+            key={tab.id}
+            onClick={() => setCurrentTab(tab.id)}
+            className={`cursor-pointer border-t-[1.5px]  w-full text-center py-4 text-sm font-medium  md:text-base ${
+              currentTab === tab.id
+                ? " bg-transparent border-secondary text-secondary"
+                : "border-transparent bg-black"
+            }`}
+          >
+            {tab.name}
+          </p>
+        ))}
+      </div>
       <div className="flex justify-between items-center mx-8 my-4 ">
         <div className="relative">
           <button className="absolute left-0 top-1/2 -translate-y-1/2">
@@ -105,7 +137,22 @@ export default function DashboardTable({
           />
         </div>
       </div>
-      <TableThree tableData={amcs} headCells={headCells} />
+
+      <div className="mt-6">
+        {currentTab === 1 && (
+          <TableThree
+            tableData={amcs.filter((a) => a.endDate > new Date())}
+            headCells={headCells}
+          />
+        )}
+        {currentTab === 2 && (
+          <TableThree
+            tableData={amcs.filter((a) => a.endDate < new Date())}
+            headCells={headCells}
+          />
+        )}
+      </div>
+
       <Pagination
         length={amcs.length}
         options={[10, 20, 30, 40, 50]}
